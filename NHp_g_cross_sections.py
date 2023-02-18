@@ -102,46 +102,6 @@ def Qcl(l, E, V):
     integ, err = nquad(lambda b, E: (1-np.cos(chi(b,E,V))**l)*b, [[0, 30]], args=(E,),  opts={"epsrel":0.01, "limit":1000})
     return 2*math.pi*integ
     
-    
-######  QUANTUM Q(E)  #########
-
-def delta(E,l,V):
-    U = np.linspace(0.00001, 30, 100)
-    def aux(r):
-        return V(r) - E*(1 - (l+1/2)**2/(2*m*E*r**2))
-    VV = np.vectorize(aux)
-    c = VV(U)
-    si = np.sign(c)
-    tp=30
-    for i in range(100-1):
-        if si[i] + si[i+1] == 0: # oposite signs
-            lim = optimize.root_scalar(aux, bracket=[U[i],U[i+1]], method='brenth')
-            tp=lim.root
-
-    if tp<30:
-        integ1, err = quad(lambda r, E: np.sqrt(1- V(r)/E - (l+1/2)**2/(2*m*E*r**2) if 1- V(r)/E - (l+1/2)**2/(2*m*E*r**2)>=0 else 0.0 ), tp, 30, args=(E,), limit=1000)
-    else:
-        integ1=0.0
-    if (l+1/2)/np.sqrt(2*m*E)<30:
-        integ2, err = quad(lambda r, E: np.sqrt(1- (l+1/2)**2/(2*m*E*r**2)  ), (l+1/2)/np.sqrt(2*m*E), 30, args=(E,), limit=1000)
-    else:
-        integ2=0.0
-    return (integ1-integ2)*np.sqrt(2*m*E)
-
-
-def Qqm(E,V):
-    s = sum( (2*l+1)*np.sin(delta(E,l,V))**2  for l in range(12000) )
-    return 4*math.pi*s/(2*m*E)
-
-
-def Qqm1(E,V):
-    s = sum( (l+1)*np.sin(delta(E,l,V)-delta(E,l+1,V))**2  for l in range(12000) )
-    return 4*math.pi*s/(2*m*E)
-
-
-def Qqm2(E,V):
-    s = sum( ((l+1)*(l+2)/(2*l+3))*np.sin(delta(E,l,V)-delta(E,l+2,V))**2  for l in range(12000) )
-    return 4*math.pi*s/(2*m*E)
 
 
 #######   POINTS TO FILE momentum transfer cross section plots #######
@@ -151,13 +111,5 @@ def Qqm2(E,V):
 #energies = np.logspace(np.log10(0.000001),np.log10(37),200)
 #for E in energies:
 #    print("{:.5e}".format(E), "{:.4e}".format( Qcl(1,E,Vtot1)), "{:.4e}".format( Qcl(2,E,Vtot1)), "{:.4e}".format( Qcl(3,E,Vtot1)) )
-
-# WKB
-
-#energies = np.logspace(np.log10(0.000001),np.log10(400),200)
-#for E in energies:
-#    print("{:.5e}".format(E), "{:.4e}".format( Qqm(E,Vtot1)), "{:.4e}".format( Qqm1(E,Vtot1)), "{:.4e}".format( Qqm2(E,Vtot1)) )
-
-
 
 
