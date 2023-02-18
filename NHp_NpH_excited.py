@@ -242,8 +242,6 @@ def Qcl(l, E, V):
     
 #######   POINTS TO FILE momentum transfer cross section plots - classical #######
 
-# classical
-
 energies = np.logspace(np.log10(0.000001),np.log10(37),200)
 ## N(2D)-H+
 for E in energies:
