@@ -108,8 +108,8 @@ def Qcl(l, E, V):
 
 # classical
 
-#energies = np.logspace(np.log10(0.000001),np.log10(37),200)
-#for E in energies:
-#    print("{:.5e}".format(E), "{:.4e}".format( Qcl(1,E,Vtot1)), "{:.4e}".format( Qcl(2,E,Vtot1)), "{:.4e}".format( Qcl(3,E,Vtot1)) )
+energies = np.logspace(np.log10(0.000001),np.log10(37),200)
+for E in energies:
+    print("{:.5e}".format(E), "{:.4e}".format( Qcl(1,E,Vtot1)), "{:.4e}".format( Qcl(2,E,Vtot1)), "{:.4e}".format( Qcl(3,E,Vtot1)) )
 
 
