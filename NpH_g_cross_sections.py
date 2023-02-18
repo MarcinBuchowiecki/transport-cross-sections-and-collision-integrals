@@ -167,11 +167,9 @@ def Qcl(l, E, V):
 
 #######   POINTS TO FILE momentum transfer cross section plots - classical #######
 
-# classical
-
-#energies = np.logspace(np.log10(0.000001),np.log10(37),200)
-#for E in energies:
-#    print("{:.5e}".format(E), "{:.4e}".format( (2*Qcl(1,E,Vtot1)+4*Qcl(1,E,Vtot2)+4*Qcl(1,E,Vtot3)+8*Qcl(1,E,Vtot4))/(2+4+4+8)   ), "{:.4e}".format( (2*Qcl(2,E,Vtot1)+4*Qcl(2,E,Vtot2)+4*Qcl(2,E,Vtot3)+8*Qcl(2,E,Vtot4))/(2+4+4+8) ), "{:.4e}".format( (2*Qcl(3,E,Vtot1)+4*Qcl(3,E,Vtot2)+4*Qcl(3,E,Vtot3)+8*Qcl(3,E,Vtot4))/(2+4+4+8)  ) )
-#     print("{:.5e}".format(E), "{:.4e}".format( Qcl(1,E,Vtot2)), "{:.4e}".format( Qcl(1,E,Vtot4)) )
+energies = np.logspace(np.log10(0.000001),np.log10(37),200)
+for E in energies:
+    print("{:.5e}".format(E), "{:.4e}".format( (2*Qcl(1,E,Vtot1)+4*Qcl(1,E,Vtot2)+4*Qcl(1,E,Vtot3)+8*Qcl(1,E,Vtot4))/(2+4+4+8)   ), "{:.4e}".format( (2*Qcl(2,E,Vtot1)+4*Qcl(2,E,Vtot2)+4*Qcl(2,E,Vtot3)+8*Qcl(2,E,Vtot4))/(2+4+4+8) ), "{:.4e}".format( (2*Qcl(3,E,Vtot1)+4*Qcl(3,E,Vtot2)+4*Qcl(3,E,Vtot3)+8*Qcl(3,E,Vtot4))/(2+4+4+8)  ) )
+     print("{:.5e}".format(E), "{:.4e}".format( Qcl(1,E,Vtot2)), "{:.4e}".format( Qcl(1,E,Vtot4)) )
 
 
